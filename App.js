@@ -1,23 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator, AsyncStorage } from 'react-navigation';
+// import { StyleSheet, Text, View } from 'react-native';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
-  }
-}
+import LoginScreen from './screens/Login';
+import BookListScreen from './screens/BookList';
+import BookDetailScreen from './screens/BookDetail';
+import ReactDocsScreen from './screens/ReactDocs';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
+const App = StackNavigator({
+  Login: { screen: LoginScreen },
+  BookList: { screen: BookListScreen },
+  BookDetail: { screen: BookDetailScreen },
+  ReactDocs: {screen: ReactDocsScreen}
 });
+
+
+export default App;

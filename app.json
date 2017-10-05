@@ -1,5 +1,8 @@
 {
   "expo": {
-    "sdkVersion": "21.0.0"
+    "name": "YikGram",
+    "slug": "YikGram",
+    "sdkVersion": "21.0.0",
+    "privacy": "public"
   }
 }
