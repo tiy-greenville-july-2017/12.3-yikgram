@@ -26,6 +26,7 @@ class IconInput extends Component {
 					autoCapitalize={this.props.autoCapitalize}
 					returnKeyType={this.props.returnKeyType}
 					ref={this.props.setRef}
+					onChangeText={this.props.onChangeText}
 					placeholderTextColor='white'
 					underlineColorAndroid='transparent'
 				/>

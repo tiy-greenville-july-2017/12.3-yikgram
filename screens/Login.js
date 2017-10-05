@@ -1,16 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import Button from '../components/Button';
 import Wallpaper from '../components/Wallpaper';
 import Logo from '../components/Logo';
 import LoginForm from '../components/LoginForm';
 import AnimatedButton from '../components/AnimatedButton';
-
-
-function timeout(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+import User from '../models/User';
 
 
 class LoginScreen extends React.Component {
@@ -18,9 +13,30 @@ class LoginScreen extends React.Component {
     header: null  // hide the header
   };
 
-  _onSubmit = async () => {
+  state = {
+    username: '',
+    password: ''
+  };
+
+  _onUsernameChange = (text) => {
+    this.setState({username: text});
+  }
+
+  _onPasswordChange = (text) => {
+    this.setState({password: text});
+  }
+
+  onSubmit = async () => {
     // AJAX Request to login user
-    await timeout(2000);
+    let user = await User.login({
+      username: this.state.username,
+      password: this.state.password
+    });
+
+    return user;
+  }
+
+  onSuccess = () => {
     this.props.navigation.navigate('BookList');
   }
 
@@ -30,9 +46,12 @@ class LoginScreen extends React.Component {
     return (
       <Wallpaper>
 				<Logo />
-				<LoginForm />
+				<LoginForm
+          onUsernameChange={this._onUsernameChange}
+          onPasswordChange={this._onPasswordChange}
+        />
 				{/*<SignupSection/>*/}
-				<AnimatedButton onSubmit={this._onSubmit}/>
+				<AnimatedButton onSubmit={this.onSubmit} onSuccess={this.onSuccess}/>
 			</Wallpaper>
     );
   }

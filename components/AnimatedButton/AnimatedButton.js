@@ -38,19 +38,16 @@ class AnimatedButton extends Component {
 		).start();
 
     // Call the submit handler
-    // await this.props.onSubmit();
-
-    // Animate to next screen
-		setTimeout(() => {
-			this._onGrow();
-		}, 2000);
+    await this.props.onSubmit();
+		this._onGrow();
 
     // Reset the screen for backwards navigation
 		setTimeout(() => {
+			this.props.onSuccess();
       this.setState({ isLoading: false });
       this.buttonAnimated.setValue(0);
 			this.growAnimated.setValue(0);
-		}, 2300);
+		}, 300);
 	}
 
 	_onGrow = () => {
@@ -92,6 +89,11 @@ class AnimatedButton extends Component {
 		);
 	}
 }
+
+AnimatedButton.propTypes = {
+	onSubmit: PropTypes.func.isRequired,
+	onSuccess: PropTypes.func.isRequired
+};
 
 const styles = StyleSheet.create({
 	container: {

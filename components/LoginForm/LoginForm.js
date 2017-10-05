@@ -50,6 +50,7 @@ class LoginForm extends Component {
 					autoCapitalize={'none'}
 					returnKeyType={'done'}
 					autoCorrect={false}
+					onChangeText={this.props.onUsernameChange}
 				/>
 
 				<IconInput
@@ -61,12 +62,18 @@ class LoginForm extends Component {
 					autoCorrect={false}
 					addon={revealPasswordControl}
 					setRef={(input) => { this.passwordInput = input; }}
+					onChangeText={this.props.onPasswordChange}
 				/>
 
 			</KeyboardAvoidingView>
 		);
 	}
 }
+
+LoginForm.propTypes = {
+	onUsernameChange: PropTypes.func.isRequired,
+	onPasswordChange: PropTypes.func.isRequired
+};
 
 const styles = StyleSheet.create({
 	container: {
